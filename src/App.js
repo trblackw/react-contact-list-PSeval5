@@ -2,17 +2,21 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Contacts from "./components/Contacts";
-import NewContact from "./components/NewContact";
+// import NewContact from "./components/NewContact";
+import AddContact from "./components/AddContact";
+import EditContact from "./components/EditContact";
+import ContactsContextProvider from "./components/ContactsContextProvider";
 
 const App = () => (
-  <Fragment>
+  <ContactsContextProvider>
     <Router>
       <Switch>
         <Route exact path="/" component={Contacts} />
-        <Route path="/new" component={NewContact} />
+        <Route path="/add" component={AddContact} />
+        <Route path="/:id" component={EditContact} />
       </Switch>
     </Router>
-  </Fragment>
+  </ContactsContextProvider>
 );
 
 export default App;
