@@ -22,6 +22,10 @@ body {
 }
 
 a {
-   text-decoration: none;
-   color: whitesmoke;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+svg:hover {
+  cursor: pointer;
 }
