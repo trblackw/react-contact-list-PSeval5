@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Contact from "./Contact";
-import { ContactsContext } from "./ContactsContext";
+import { Consumer } from "./ContactsContext";
 
 class Contacts extends Component {
   render() {
     return (
-      <ContactsContext.Consumer>
+      <Consumer>
         {({ contacts }) => (
           <ContactsContainer>
             <ContactsHeader>
@@ -32,7 +32,7 @@ class Contacts extends Component {
             </div>
           </ContactsContainer>
         )}
-      </ContactsContext.Consumer>
+      </Consumer>
     );
   }
 }

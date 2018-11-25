@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Button } from "./Contacts";
 import { Link } from "react-router-dom";
-import { ContactsContext } from "./ContactsContext";
+import { Consumer } from "./ContactsContext";
 
 export default class AddContact extends Component {
   state = {
@@ -39,7 +39,7 @@ export default class AddContact extends Component {
 
   render() {
     return (
-      <ContactsContext.Consumer>
+      <Consumer>
         {({ add }) => (
           <ContactForm
             onSubmit={e => this.handleSubmit(e)}
@@ -78,6 +78,7 @@ export default class AddContact extends Component {
               <input
                 type="text"
                 placeholder="image"
+                defaultValue="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnWmCqkrK1YA_DaAW38pCJ33BwehMKyYVZ3fhhQ8QGCPqfNWF6Xygfxg"
                 onChange={this.handleImage}
               />
             </div>
@@ -90,7 +91,7 @@ export default class AddContact extends Component {
             </Button>
           </ContactForm>
         )}
-      </ContactsContext.Consumer>
+      </Consumer>
     );
   }
 }

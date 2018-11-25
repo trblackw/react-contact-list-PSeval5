@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ContactsContext } from "./ContactsContext";
+import { Provider } from "./ContactsContext";
 
 export default class ContactsContextProvider extends Component {
   state = {
@@ -55,7 +55,7 @@ export default class ContactsContextProvider extends Component {
 
   render() {
     return (
-      <ContactsContext.Provider
+      <Provider
         value={{
           contacts: this.state.contacts,
           remove: this.removeContact,
@@ -63,7 +63,7 @@ export default class ContactsContextProvider extends Component {
         }}
       >
         {this.props.children}
-      </ContactsContext.Provider>
+      </Provider>
     );
   }
 }
