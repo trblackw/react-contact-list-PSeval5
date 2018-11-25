@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
-import { ContactsContext } from "./ContactsContext";
+import { Consumer } from "./ContactsContext";
 import { Link } from "react-router-dom";
+import Toggle from "./elements/Toggle";
+import Modal from "./elements/Modal";
+import { Button } from "./Contacts";
 
 const Contact = ({ name, img, email, number, id }) => (
-  <ContactsContext.Consumer>
+  <Consumer>
     {({ remove }) => (
       <ContactContainer className="drop-shadow">
         <ContactImageContainer>
@@ -20,15 +23,49 @@ const Contact = ({ name, img, email, number, id }) => (
           <Link to={`/${id}`}>
             <button id="edit">Edit</button>
           </Link>
-          <Link to="#">
-            <button id="remove" onClick={() => remove(id)}>
-              Remove
-            </button>
-          </Link>
+          <Toggle>
+            {({ on, toggle }) => (
+              <Fragment>
+                <Link to="#">
+                  <button id="remove" onClick={toggle}>
+                    Remove
+                  </button>
+                </Link>
+                <Modal on={on} toggle={toggle}>
+                  <h3>Are you sure you want to delete {name}'s contact?</h3>
+                  <div className="button-group" style={{ textAlign: "center" }}>
+                    <Button
+                      style={{
+                        background: "hsl(96, 63%, 43%)",
+                        display: "inline-block",
+                        margin: "1em"
+                      }}
+                      onClick={() => {
+                        remove(id);
+                        toggle();
+                      }}
+                    >
+                      Yes
+                    </Button>
+                    <Button
+                      style={{
+                        background: "hsl(16, 95%, 45%)",
+                        display: "inline-block",
+                        margin: "1em"
+                      }}
+                      onClick={toggle}
+                    >
+                      No
+                    </Button>
+                  </div>
+                </Modal>
+              </Fragment>
+            )}
+          </Toggle>
         </div>
       </ContactContainer>
     )}
-  </ContactsContext.Consumer>
+  </Consumer>
 );
 
 export default Contact;
