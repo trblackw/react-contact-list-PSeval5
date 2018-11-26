@@ -25,6 +25,22 @@ export default class ContactsContextProvider extends Component {
       () => console.log(this.state.contacts)
     );
   };
+  updateContact = editedContact => {
+    const { contacts } = this.state;
+    const contactToUpdate = contacts.find(
+      contact => contact.id === Number(editedContact.id)
+    );
+    const updatedContacts = contacts.map(contact => {
+      if (contact.id === contactToUpdate.id) {
+        contact = editedContact;
+        return contact;
+      } else {
+        return contact;
+      }
+    });
+
+    this.setState({ contacts: updatedContacts });
+  };
 
   dummyContacts = [
     {
@@ -59,7 +75,8 @@ export default class ContactsContextProvider extends Component {
         value={{
           contacts: this.state.contacts,
           remove: this.removeContact,
-          add: this.addContact
+          add: this.addContact,
+          update: this.updateContact
         }}
       >
         {this.props.children}
