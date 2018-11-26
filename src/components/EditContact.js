@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { Consumer } from "./ContactsContext";
-import Contact from "./Contact";
 import styled from "styled-components";
+import ContactToEdit from "./ContactToEdit";
 
 export default class EditContact extends Component {
   render() {
     const selectedID = this.props.match.params.id;
     return (
       <Consumer>
-        {({ contacts }) => {
+        {({ contacts, update }) => {
           const contact = contacts.find(cont => cont.id === Number(selectedID));
           return (
             contact !== undefined && (
               <ContactContainer>
-                <Contact
-                  key={contact.id}
+                <ContactToEdit
+                  id={selectedID}
                   name={contact.name}
                   email={contact.email}
-                  img={contact.image_url}
+                  image={contact.image_url}
                   number={contact.phone_number}
-                  id={contact.id}
+                  update={update}
                 />
               </ContactContainer>
             )
@@ -34,5 +34,9 @@ const ContactContainer = styled.div`
   margin: 2em auto;
   padding: 1em;
   font-size: 1.5em;
+  text-align: center;
 
+  input {
+    width: 90%;
+  }
 `;

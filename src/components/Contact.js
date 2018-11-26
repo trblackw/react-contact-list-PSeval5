@@ -113,7 +113,7 @@ const ContactContainer = styled.div`
   }
 `;
 
-const ContactImageContainer = styled.div`
+export const ContactImageContainer = styled.div`
   width: 100px;
   height: 100px;
   clip-path: circle(50% at 50% 50%);

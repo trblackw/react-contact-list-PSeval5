@@ -96,7 +96,7 @@ export default class AddContact extends Component {
   }
 }
 
-const ContactForm = styled.form`
+export const ContactForm = styled.form`
   margin: 1.5em auto;
   padding: 1em;
   border: 2px solid black;
@@ -111,7 +111,7 @@ const ContactForm = styled.form`
   }
 
   #form {
-    margin: 1em;
+    margin: 1em auto;
   }
 
   input {
