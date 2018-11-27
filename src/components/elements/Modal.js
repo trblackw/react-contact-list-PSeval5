@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
+import PropTypes from "prop-types";
 
 const modalRoot = document.getElementById("modal");
 
@@ -41,6 +42,11 @@ export default class Modal extends Component {
     );
   }
 }
+Modal.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  toggle: PropTypes.func.isRequired,
+  on: PropTypes.bool.isRequired
+};
 
 const ModalWrapper = styled.div`
   position: absolute;

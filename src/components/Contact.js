@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Toggle from "./elements/Toggle";
 import Modal from "./elements/Modal";
 import { Button } from "./Contacts";
+import PropTypes from "prop-types";
+import Icon from "./elements/Icon";
 
 const Contact = ({ name, img, email, number, id }) => (
   <Consumer>
@@ -36,7 +38,7 @@ const Contact = ({ name, img, email, number, id }) => (
                   <div className="button-group" style={{ textAlign: "center" }}>
                     <Button
                       style={{
-                        background: "hsl(96, 63%, 43%)",
+                        background: "transparent",
                         display: "inline-block",
                         margin: "1em"
                       }}
@@ -45,17 +47,17 @@ const Contact = ({ name, img, email, number, id }) => (
                         toggle();
                       }}
                     >
-                      Yes
+                      <Icon name="check" color="green" />
                     </Button>
                     <Button
                       style={{
-                        background: "hsl(16, 95%, 45%)",
+                        background: "transparent",
                         display: "inline-block",
                         margin: "1em"
                       }}
                       onClick={toggle}
                     >
-                      No
+                      <Icon name="remove" color="red" />
                     </Button>
                   </div>
                 </Modal>
@@ -67,6 +69,14 @@ const Contact = ({ name, img, email, number, id }) => (
     )}
   </Consumer>
 );
+
+Contact.propTypes = {
+  name: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired
+};
 
 export default Contact;
 
