@@ -3,6 +3,7 @@ import { ContactForm } from "./AddContact";
 import { ContactImageContainer } from "./Contact";
 import { Button } from "./Contacts";
 import { Link } from "react-router-dom";
+import { reducer } from "../helpers";
 
 export default class ContactToEdit extends Component {
   state = {
@@ -12,23 +13,15 @@ export default class ContactToEdit extends Component {
     image_url: ""
   };
 
+   //maintain id
   static getDerivedStateFromProps = ({ id }) => ({ id: Number(id) });
 
-  checkChanges = () => {
-    const inputs = [...this.contactForm.querySelectorAll("input")];
-    const newState = inputs.reduce((newStateObj, input) => {
-      newStateObj[input.name] =
-        input.value !== input.defaultValue ? input.value : input.defaultValue;
-      return newStateObj;
-    }, {});
-    this.setState(
-      {
-        name: newState.name,
-        email: newState.email,
-        phone_number: newState.phone_number,
-        image_url: newState.image_url
-      },
-      () => this.props.update(this.state)
+  collectState = () => {
+     const inputs = [...this.contactForm.querySelectorAll("input")];
+     const { name, email, phone_number, image_url } = reducer(inputs);
+     //reducer function returns update { key-value pairs } for edit contact form
+    this.setState({ name, email, phone_number, image_url }, () =>
+      this.props.update(this.state)
     );
   };
 
@@ -51,7 +44,7 @@ export default class ContactToEdit extends Component {
           <Button
             style={{ width: "auto" }}
             type="button"
-            onClick={this.checkChanges}
+            onClick={this.collectState}
           >
             Finish editing
           </Button>
