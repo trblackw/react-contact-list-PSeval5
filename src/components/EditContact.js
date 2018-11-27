@@ -12,13 +12,13 @@ export default class EditContact extends Component {
           const contact = contacts.find(cont => cont.id === Number(selectedID));
           return (
             contact !== undefined && (
-              <ContactContainer>
+              <ContactContainer className="drop-shadow">
                 <ContactToEdit
-                  id={selectedID}
+                  id={Number(selectedID)}
                   name={contact.name}
                   email={contact.email}
-                  image={contact.image_url}
-                  number={contact.phone_number}
+                  image_url={contact.image_url}
+                  phone_number={contact.phone_number}
                   update={update}
                 />
               </ContactContainer>
@@ -31,7 +31,7 @@ export default class EditContact extends Component {
 }
 
 const ContactContainer = styled.div`
-  margin: 2em auto;
+  margin: 0 auto;
   padding: 1em;
   font-size: 1.5em;
   text-align: center;

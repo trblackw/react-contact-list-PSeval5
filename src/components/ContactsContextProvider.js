@@ -66,6 +66,14 @@ export default class ContactsContextProvider extends Component {
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/GodfreyKneller-IsaacNewton-1689.jpg/220px-GodfreyKneller-IsaacNewton-1689.jpg",
       email: "newton@example.com",
       phone_number: "15588855555"
+    },
+    {
+      id: 703832904,
+      name: "Benjamin Franklin",
+      image_url:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg/440px-Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg",
+      email: "franklin@example.com",
+      phone_number: "15588855577"
     }
   ];
 
